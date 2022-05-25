@@ -90,8 +90,8 @@ namespace ariel {
             OrgChart(const OrgChart& o);
             ~OrgChart();
             OrgChart& operator=(const OrgChart& other);
-            OrgChart(OrgChart& org) = default;
-            OrgChart(OrgChart&& org) = default;
+            OrgChart(OrgChart& other) = default;
+            OrgChart(OrgChart&& other) = default;
             OrgChart& operator=(OrgChart&&) = default;
             // OrgChart& operator=(const OrgChart& org) = default;
 
