@@ -28,7 +28,10 @@ namespace ariel {
             Node (const Node& n);
             Node(string _data, vector<Node*> _children);         
             Node(string _data);
- 
+            Node(Node& other) = default;
+            Node(Node&& other) = default;
+            Node& operator=(Node&&) = default;
+            Node& operator=(const Node& other) = default;
             ~Node();
 
     };
@@ -87,6 +90,10 @@ namespace ariel {
             OrgChart(const OrgChart& o);
             ~OrgChart();
             OrgChart& operator=(const OrgChart& other);
+            OrgChart(OrgChart& org) = default;
+            OrgChart(OrgChart&& org) = default;
+            OrgChart& operator=(OrgChart&&) = default;
+            // OrgChart& operator=(const OrgChart& org) = default;
 
             /********* main functions **********/
             void free_all_nodes(Node* root);
