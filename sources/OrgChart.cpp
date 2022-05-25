@@ -161,7 +161,7 @@ namespace ariel {
             current_index++;
             return *this;
         }
-        throw invalid_argument("Error, you increment to an index out of range!");
+        throw runtime_error("Error, you increment to an index out of range!");
         
     }
 
@@ -263,8 +263,9 @@ namespace ariel {
             throw invalid_argument("Error, there isn't any nodes in the tree!");
         }
 
-        if( dad_data.empty() || son_data.empty()) {
-            throw invalid_argument("Error, there is at least one empty string!");
+        if( dad_data.empty() || son_data.empty() || dad_data == "\n" || dad_data == "\t" 
+            || son_data == "\r" || son_data == "\n" || son_data == "\t" || son_data == "\r") {
+            throw invalid_argument("Error, invalid input - or there is at least one empty string!");
         }
 
         // Call for find function
@@ -281,7 +282,7 @@ namespace ariel {
             return *this;
         }
 
-        throw  invalid_argument("Error, dad not found");
+        throw  runtime_error("Error, dad not found");
 
     }
 
@@ -289,7 +290,7 @@ namespace ariel {
 
     OrgChart::Iterator OrgChart::begin() const{
         if (root == nullptr) {
-            throw runtime_error("chart is empty!");
+            throw invalid_argument("chart is empty!");
         }
         return begin_level_order();
     }
@@ -297,7 +298,7 @@ namespace ariel {
 
     OrgChart::Iterator OrgChart::end() const{
             if (root == nullptr) {
-            throw runtime_error("chart is empty!");
+            throw invalid_argument("chart is empty!");
         }
         return end_level_order();
     }
@@ -305,7 +306,7 @@ namespace ariel {
 
     OrgChart::Iterator OrgChart::begin_preorder() const{ 
             if (root == nullptr) {
-            throw runtime_error("chart is empty!");
+            throw invalid_argument("chart is empty!");
         }
         return Iterator(root,Order::preoder); 
     }
@@ -313,7 +314,7 @@ namespace ariel {
 
     OrgChart::Iterator OrgChart::end_preorder() const{
             if (root == nullptr) {
-            throw runtime_error("chart is empty!");
+            throw invalid_argument("chart is empty!");
         }
         return Iterator(nullptr,Order::preoder);
     };
@@ -321,7 +322,7 @@ namespace ariel {
 
     OrgChart::Iterator OrgChart::begin_level_order() const{
             if (root == nullptr) {
-            throw runtime_error("chart is empty!");
+            throw invalid_argument("chart is empty!");
         }
         return Iterator(root, Order::level_order);
     }
@@ -329,7 +330,7 @@ namespace ariel {
 
     OrgChart::Iterator OrgChart::end_level_order() const{ 
             if (root == nullptr) {
-            throw runtime_error("chart is empty!");
+            throw invalid_argument("chart is empty!");
         }
         return Iterator(nullptr,  Order::level_order);
     }
@@ -337,7 +338,7 @@ namespace ariel {
 
     OrgChart::Iterator OrgChart::begin_reverse_order() const{ 
             if (root == nullptr) {
-            throw runtime_error("chart is empty!");
+            throw invalid_argument("chart is empty!");
         }
         return Iterator(root, Order::reverse_order); 
     }
@@ -345,7 +346,7 @@ namespace ariel {
 
     OrgChart::Iterator OrgChart::reverse_order() const{ 
             if (root == nullptr) {
-            throw runtime_error("chart is empty!");
+            throw invalid_argument("chart is empty!");
         }
         return Iterator(nullptr, Order::reverse_order);
     }
